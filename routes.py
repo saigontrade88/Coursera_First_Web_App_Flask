@@ -13,7 +13,7 @@ import forms
 def index():
     print('http://127.0.0.1:8580/about')
     tasks = Task.query.all()
-    return render_template('index.html', current_title='Landing page', tasks=tasks)
+    return render_template('index.html', page='Landing page', tasks=tasks)
 
 @app.route('/about', methods=['GET', 'POST'])
 def about():
@@ -26,13 +26,14 @@ def about():
             flash('Task added to the database')
             print('Submitted title', form.title.data) 
             return redirect(url_for('index'))
-    return render_template('about.html', page=request.args.get('page', 'About'), form=form)
+    return render_template('about.html', page='About', form=form)
 
 @app.route('/edit/<int:task_id>', methods=['GET', 'POST'])
 def edit(task_id):
     task = Task.query.get(task_id)
     form = forms.AddTaskForm()
     #exist
+    print(task)
     if task:
         if form.validate_on_submit():
             task.title = form.title.data
@@ -43,6 +44,24 @@ def edit(task_id):
 
         form.title.data = task.title
         return render_template('edit.html', form=form, task_id=task_id)
+    flash(f'Task with id {task_id} does not exit')
+    return redirect(url_for('index'))
+
+
+@app.route('/delete/<int:task_id>', methods=['GET', 'POST'])
+def delete(task_id):
+    task = Task.query.get(task_id)
+    form = forms.DeleteTaskForm()
+    #exist
+    if task:
+        if form.validate_on_submit():
+            if form.submit.data:
+                db.session.delete(task)
+                db.session.commit()
+                flash('Task deleted')
+            return redirect(url_for('index'))
+        return render_template('delete.html', form=form, task_id=task_id, title=task.title)
+    flash(f'Task with id {task_id} does not exit')
     return redirect(url_for('index'))
 
 @app.route("/hello/<name>")

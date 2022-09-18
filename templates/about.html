@@ -2,7 +2,7 @@
 
 {% block main %}
 <p>
-    Some content about the Home page
+    Some content about the {{ page }} page
 </p>
 <form action="{{ url_for('about')}}", method="post">
     {{ form.csrf_token() }}
