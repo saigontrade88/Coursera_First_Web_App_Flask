@@ -31,10 +31,21 @@ def about():
                             current_title='About page',
                             form=form)
 
-@app.route('/edit/<int:task_id>')
+@app.route('/edit/<int:task_id>', methods=['GET', 'POST'])
 def edit(task_id):
     task = Task.query.get(task_id)
-    print(task)
+    form = forms.AddTaskForm()
+    #exist
+    if task:
+        if form.validate_on_submit():
+            task.title = form.title.data
+            task.date = datetime.utcnow()
+            db.session.commit()
+            flash('Task has been updated.')
+            return redirect(url_for('index'))
+
+        form.title.data = task.title
+        return render_template('edit.html', form=form, task_id=task_id)
     return redirect(url_for('index'))
 
 @app.route("/hello/<name>")
