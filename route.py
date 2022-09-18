@@ -1,8 +1,12 @@
-from app import app
-from flask import render_template
+from app import app, db
+from flask import render_template, redirect, url_for
 from datetime import datetime
+from models import Task
+from datetime import datetime
+
 import re
 import forms
+
 
 
 #decorated function
@@ -10,16 +14,18 @@ import forms
 @app.route('/index')
 def index():
     print('http://127.0.0.1:8580/about')
-    return render_template('index.html', current_title='Landing page')
+    tasks = Task.query.all()
+    return render_template('index.html', current_title='Landing page', tasks=tasks)
 
 @app.route('/about', methods=['GET', 'POST'])
 def about():
     form = forms.AddTaskForm()
     if form.validate_on_submit():
+        t = Task(title=form.title.data, date=datetime.utcnow())
+        db.session.add(t)
+        db.session.commit()
         print('Submitted title', form.title.data)
-        return render_template('about.html', 
-                                form=form, 
-                                title=form.title.data)
+        return redirect(url_for('index'))
     return render_template('about.html', 
                             current_title='About page',
                             form=form)
