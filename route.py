@@ -31,6 +31,12 @@ def about():
                             current_title='About page',
                             form=form)
 
+@app.route('/edit/<int:task_id>')
+def edit(task_id):
+    task = Task.query.get(task_id)
+    print(task)
+    return redirect(url_for('index'))
+
 @app.route("/hello/<name>")
 def hello_there(name):
     now = datetime.now()
