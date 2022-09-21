@@ -1,0 +1,100 @@
+.container{
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: .6rem;
+}
+
+.left-container{
+    width: 70%;
+    height: fit-content;
+    background-color: whitesmoke;
+    box-shadow: 10px 10px 5px #aaaaaa;
+}
+
+.right-container{
+    width: 25%;
+    height: fit-content;
+    background-color: whitesmoke;
+    box-shadow: 10px 10px 5px #aaaaaa;
+}
+
+.first-div-container{
+    width: 100%;
+    height: fit-content;
+    display: block;
+    margin-bottom: 50px;
+    padding: .7rem;
+}
+
+.first-div-element{
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+
+.first-div-right{
+    width: 100%;
+    padding: .3rem;
+}
+
+.first-div-left{
+    margin-right: 1.5rem;
+}
+
+.first-div-right-title{
+    margin: 0;
+}
+
+
+.second-div-container{
+    display: flex;
+    justify-content: space-around;
+    padding: .7rem;
+}
+
+@media screen and (max-width: 1300px) {
+    .second-div-img{
+        width: 100px;
+        height: 90px;
+    }
+}
+
+@media screen and (max-width: 950px){
+
+    .second-div-container{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 3rem 1.2rem;
+    }
+    .second-div-element {
+        width: 50%;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .second-div-element:nth-child(n+3){
+        order: 1;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .right-container{
+        display: none;
+    }
+    .left-container{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .first-div-left-img{
+        width: 150px;
+        height: 75px
+    }
+    .first-div-right{
+        width: auto;
+    }
+}

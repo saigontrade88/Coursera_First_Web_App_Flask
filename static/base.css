@@ -1,0 +1,130 @@
+.navbar {
+  width: 100%;
+  height: fit-content;
+  background-color: #555;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar .route-element {
+  display: flex;
+  height: 100%;
+}
+
+.navbar .route-element .nav-link {
+  /* float: left; */
+  padding: 12px;
+  color: white;
+  font-size: 17px;
+  height: 50px;
+  width: 150px;
+  background-color: dimgray;
+  text-align: center;
+}
+
+.navbar .route-element .nav-link:hover {
+  background-color: #000;
+}
+
+.navbar .route-element .nav-link.active {
+  background-color: #04AA6D;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar{
+    display: block;
+  }
+  .navbar .route-element{
+    display: grid;
+  }
+  .navbar .route-element .nav-link {
+    float: left;
+    width: auto;
+  }
+
+  .navbar .logo {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+h1{
+  width: 100%;
+  text-align: center;
+}
+
+.footer{
+  background-color: #006747;
+  color: #fff;
+  margin-top: 5em;
+  padding: 3.5em 7rem 3rem 7rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer .footer-left p a:link{
+  background-color: transparent;
+  color: white;
+  text-decoration: none;
+}
+
+.footer .footer-left p a:visited {
+  color: blue;
+  background-color: transparent;
+  text-decoration: none;
+}
+.footer .footer-left p a:hover {
+  color: pink;
+  background-color: transparent;
+  text-decoration: underline;
+}
+.footer .footer-left p a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.footer .footer-right p a:link{
+  background-color: transparent;
+  color: white;
+  text-decoration: none;
+}
+
+.footer .footer-right p a:visited {
+  color: blue;
+  background-color: transparent;
+  text-decoration: none;
+}
+.footer .footer-right p a:hover {
+  color: pink;
+  background-color: transparent;
+  text-decoration: underline;
+}
+.footer .footer-right p a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.footer .footer-middle{
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+
+@media screen and (max-width: 850px) {
+  .footer{
+    padding: 3.5em 4rem 3rem 4rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .footer{
+    padding: 3em 1.5em 3em;
+  }
+}
+
+
+.hidden{
+  display: none;
+}
